@@ -16,7 +16,7 @@ Vue.http.interceptors.push((request, next) => {
   });
 });
 
-Vue.http.options.root = 'https://vuejs-http-a2c8e.firebaseio.com/data.json';
+Vue.http.options.root = 'https://vuejs-http-a2c8e.firebaseio.com/';
 
 new Vue({
   el: '#app',

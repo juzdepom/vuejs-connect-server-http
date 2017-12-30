@@ -28,7 +28,13 @@
     // var $http = require('http')
 
     export default {
+      created(){
+        const customActions = {
+          saveAlt: {method: "POST", url: 'alternative.json'}
+        }
+        this.resource = this.$resource('data.json', {}, customActions);
 
+      },
       data(){
         return {
           user: {
@@ -36,20 +42,23 @@
             email: ''
           },
           users: [],
+          resource: {}
         };
       },
       methods: {
         submit(){
-          this.$http.post('', this.user)
-            .then(response => {
-              console.log(response)
-            }, error => {
-              console.log(error)
-            });
+          this.resource.saveAlt(this.user);
+          // this.resource.save({}, this.user);
+
+          // this.$http.post('data.json', this.user)
+          //   .then(response => {
+          //     console.log(response)
+          //   }, error => {
+          //     console.log(error)
+          //   });
         },
         getData(){
-          console.log('fetching data')
-          this.$http.get('')
+          this.$http.get('data.json')
             .then(response => {
               // returns a promise
               return response.json()
