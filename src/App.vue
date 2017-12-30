@@ -13,6 +13,9 @@
                 </div>
                 <button @click="submit" class="btn btn-primary">Submit</button>
                 <hr>
+                <p><i>Determines which node the data is fetched from...</i></p>
+                <input type="text" class="form-control" v-model="node">
+                <br>
                 <button @click="getData" class="btn btn-primary" >Fetch Data</button>
                 <br><br>
                 <ul class="list-group">
@@ -30,9 +33,10 @@
     export default {
       created(){
         const customActions = {
-          saveAlt: {method: "POST", url: 'alternative.json'}
+          saveAlt: {method: "POST", url: 'alternative.json'},
+          getData: {method: "GET", }
         }
-        this.resource = this.$resource('data.json', {}, customActions);
+        this.resource = this.$resource('{node}.json', {}, customActions);
 
       },
       data(){
@@ -42,7 +46,8 @@
             email: ''
           },
           users: [],
-          resource: {}
+          resource: {},
+          node: 'data',
         };
       },
       methods: {
@@ -58,7 +63,7 @@
           //   });
         },
         getData(){
-          this.$http.get('data.json')
+          this.resource.getData({node: this.node})
             .then(response => {
               // returns a promise
               return response.json()
@@ -70,6 +75,19 @@
               }
               this.users = dataResults;
             });
+
+          // this.$http.get('data.json')
+            // .then(response => {
+            //   // returns a promise
+            //   return response.json()
+            // })
+            // .then(data => {
+            //   const dataResults = [];
+            //   for (let key in data){
+            //     dataResults.push(data[key]);
+            //   }
+            //   this.users = dataResults;
+            // });
         }
       }
     }
