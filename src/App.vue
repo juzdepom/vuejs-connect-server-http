@@ -28,18 +28,19 @@
     // var $http = require('http')
 
     export default {
+
       data(){
         return {
           user: {
             username: '',
             email: ''
           },
-          users: []
+          users: [],
         };
       },
       methods: {
         submit(){
-          this.$http.post('https://vuejs-http-a2c8e.firebaseio.com/data.json', this.user)
+          this.$http.post('', this.user)
             .then(response => {
               console.log(response)
             }, error => {
@@ -48,7 +49,7 @@
         },
         getData(){
           console.log('fetching data')
-          this.$http.get('https://vuejs-http-a2c8e.firebaseio.com/data.json')
+          this.$http.get('')
             .then(response => {
               // returns a promise
               return response.json()
