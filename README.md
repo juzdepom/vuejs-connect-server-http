@@ -2,6 +2,8 @@
 
 > A Vue.js project
 
+![Screenshot](screenshot.png)
+
 ## Build Setup
 
 ``` bash
