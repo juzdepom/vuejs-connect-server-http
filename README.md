@@ -2,7 +2,7 @@
 
 > A Vue.js project
 
-![Screenshot](screenshot.png)
+![Screenshot](demo.png)
 
 ## Build Setup
 
